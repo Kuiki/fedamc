@@ -16314,3 +16314,7 @@ ul {
 .sidebar .nav:not(.sub-menu) > .nav-item:hover:not(.nav-profile) > .nav-link, .sidebar .nav .nav-item .nav-link[aria-expanded="true"]{
   background: none;
 }
+
+.sidebar .nav.sub-menu{
+  padding: 0 0 0 2rem;
+}

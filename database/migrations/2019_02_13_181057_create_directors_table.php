@@ -4,29 +4,27 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateDirectorsTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('directors', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('idUser');
             $table->string('name');
             $table->string('lastname')->nullable();
             $table->string('profilePicture')->nullable()->default('images/users/user.jpg');
             $table->string('email')->unique();
-            $table->string('password'); 
-            $table->boolean('active')->nullable()->default('1');          
-            $table->rememberToken();
+            $table->boolean('active')->nullable()->default('1');
+            $table->foreign('idUser')->references('id')->on('users');
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -35,6 +33,10 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('directors', function (Blueprint $table) {
+            $table->dropForeign('directors_idUser_foreign');
+            $table->dropColumn('idUser');
+        });
+        Schema::dropIfExists('directors');
     }
 }

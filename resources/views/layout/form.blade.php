@@ -15,6 +15,19 @@
 	              		Personal info
 	              	@show
 	            </p>
+
+	          	@if ($errors->any())
+	                <blockquote class="blockquote alert-info">
+		              <ul class="list-ticked mb-0">
+		              @foreach ($errors->all() as $error)
+
+		                  <li>{{ $error }}</li>
+		                
+		              @endforeach
+		              </ul>
+		            </blockquote>
+	            @endif
+
 	          <form class="form-sample" method="POST" @yield('form-action') >
 	          	@section('form-content')
 	            <div class="row">

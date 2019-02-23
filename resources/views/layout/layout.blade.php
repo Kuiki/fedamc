@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="{{ asset('fedamc/css/style.css') }}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ asset('fedamc/images/favicon.png') }}" />
+  <style type="text/css">
+    @yield('custom-css')
+  </style>
 </head>
 
 <body>
@@ -37,6 +40,13 @@
 
         <!-- content-wrapper -->
         <div class="content-wrapper">
+          @if (session('info'))
+              <blockquote class="blockquote alert-info">
+                <ul class="list-ticked mb-0">
+                <li>{{ session('info') }}</li>
+                </ul>
+              </blockquote>
+          @endif
           @yield('content')
         </div>
         <!-- content-wrapper ends -->
@@ -50,6 +60,8 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+  <!-- JS PERSONALIZADO -->
+  @yield('custom-js')
   <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="{{ asset('fedamc/vendors/js/vendor.bundle.base.js') }}"></script>

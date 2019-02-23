@@ -14,7 +14,7 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-success btn-block">Nuevo Usuario
+        <button class="btn btn-success btn-block" onclick="window.location.href='{{ route('usuarios.nuevo') }}'">Nuevo Usuario
           <i class="mdi mdi-plus"></i>
         </button>
       </div>
@@ -27,7 +27,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#maestros" aria-expanded="false" aria-controls="maestros">
-        <i class="menu-icon mdi mdi-account-star"></i>
+        <i class="menu-icon mdi mdi-clipboard-account"></i>
         <span class="menu-title">MAESTROS</span>
         <i class="menu-arrow"></i>
       </a>
@@ -44,7 +44,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#federados" aria-expanded="false" aria-controls="federados">
-        <i class="menu-icon mdi mdi-account-multiple"></i>
+        <i class="menu-icon mdi mdi-clipboard-check"></i>
         <span class="menu-title">FEDERADOS</span>
         <i class="menu-arrow"></i>
       </a>
@@ -59,22 +59,27 @@
         </ul>
       </div>
     </li>
+    <!--
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('/intranet') }}">
+        <i class="menu-icon mdi mdi-television"></i>
+        <span class="menu-title">RANGOS</span>
+      </a>
+    </li>
+  -->
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#configuracion" aria-expanded="false" aria-controls="configuracion">
         <i class="menu-icon mdi mdi-account"></i>
-        <span class="menu-title">MI CUENTA</span>
+        <span class="menu-title">Usuarios</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="configuracion">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="#"> Ver Perfil </a>
+            <a class="nav-link" href="{{ route('usuarios') }}"> Todos los Usuarios </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> Cambiar contranseña </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Cerrar Sessión </a>
+            <a class="nav-link" href="{{ route('usuarios.nuevo') }}"> Nuevo Usuario </a>
           </li>
         </ul>
       </div>
