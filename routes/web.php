@@ -1,20 +1,8 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-// Authentication Routes...
-//Registration Routes...
-Route::get('registro', 'Auth\RegisterController@showRegistrationForm')->name('registro');
-Route::post('registro', 'Auth\RegisterController@register');
-Auth::routes();
+Route::get('/', function () {
+    return view('welcome');
+});
 
 //	AGRUPAMOS LAS URL QUE COMPARTEN EL MISMO PREFIJO NTRANET
 Route::middleware(['auth'])->group(function () {
@@ -63,11 +51,10 @@ Route::middleware(['auth'])->group(function () {
 	});
 });
 
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
+// Authentication Routes....
+Route::get('registro', 'Auth\RegisterController@showRegistrationForm')->name('registro');
+Route::post('registro', 'Auth\RegisterController@register');
+Auth::routes();
 
 Route::get('/intranet', function () {
 	$users = App\User::all()->count();
@@ -75,3 +62,10 @@ Route::get('/intranet', function () {
 	$teachers = App\Teachers::all()->count();
 	return view('index', compact('users','studends','teachers'));
 })->middleware('auth');
+
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+Route::get('/exportar', function(){
+	return Excel::download(new UsersExport, 'users.csv');
+});
