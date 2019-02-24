@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Star Admin Free Bootstrap-4 Admin Dashboard Template</title>
+  <title>Fedamc - Intranet</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset('fedamc/vendors/iconfonts/mdi/css/materialdesignicons.min.css') }}">
   <link rel="stylesheet" href="{{ asset('fedamc/vendors/css/vendor.bundle.base.css') }}">

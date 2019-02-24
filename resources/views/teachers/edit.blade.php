@@ -166,8 +166,8 @@
           <label class="col-sm-3 col-form-label">Estado</label>
           <div class="col-sm-9">
             <select name="active" class="form-control">
-              <option value="1" {{ $teacher->active == '1' ? 'selected' : ''}}>Activo</option>
-              <option value="0" {{ $teacher->active == '0' ? 'selected' : ''}}>Inactivo</option>
+              <option value="1" {{ $teacher->user->active == '1' ? 'selected' : ''}}>Activo</option>
+              <option value="0" {{ $teacher->user->active == '0' ? 'selected' : ''}}>Inactivo</option>
             </select>
           </div>
         </div>

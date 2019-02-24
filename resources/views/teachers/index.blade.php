@@ -37,7 +37,7 @@
 		      {{ $teacher->email }}
 		    </td>
 		    <td>
-		    	@if ($teacher->active == 0)
+		    	@if ($teacher->user->active == 0)
 		    		<label class="badge badge-danger">Inactivo</label>
 		    	@else
 		    		<label class="badge badge-success">Activo</label>

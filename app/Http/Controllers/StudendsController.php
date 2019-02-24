@@ -23,6 +23,7 @@ class StudendsController extends Controller
 
     public function store(Request $request){
         //validamos
+
     	$data = $request->validate([
     		'name' => 'required',
     		'lastname' => 'required',
@@ -40,17 +41,19 @@ class StudendsController extends Controller
             'address' => '',
             'cp' => '',
             'city' => '',
-            'active' => 'required',
+            'active' => '',
             'rate' => 'numeric',
             'idUser' => '',
             'idTeacher' => '',
     	]);
+
+        $data['typeUser'] = 'federado';
+        //encriptamos la contraseña
+        $data['password'] = bcrypt('password');
         //creamos el usuario primero
     	$user = User::create($data);
         //guardamos el id de ese usuario
    		$data['idUser'] = $user->id;
-        //encriptamos la contraseña
-        $data['password'] = bcrypt('password');
         //Comprobamos si hay imagen
     	if ($request->hasFile('profilePicture')) {
    			$data['profilePicture'] = $request->file('profilePicture')->store('public/profiles');
@@ -92,7 +95,7 @@ class StudendsController extends Controller
             'address' => '',
             'cp' => '',
             'city' => '',
-            'active' => 'required',
+            'active' => '',
             'rate' => 'numeric',
             'idUser' => '',
             'idTeacher' => '',
@@ -105,7 +108,7 @@ class StudendsController extends Controller
         }
         //Comprobamos si hay imagen
    		if ($request->hasFile('profilePicture')) {
-   			$data['profilePicture'] = $request->file('profilePicture')->store('public/profile');
+   			$data['profilePicture'] = $request->file('profilePicture')->store('public/profiles');
    		}
         //Actualizamos usuario
         $studends->user->update($data);

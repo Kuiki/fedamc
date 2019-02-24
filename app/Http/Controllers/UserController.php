@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     
     public function index(){
-    	$data = User::where('id','!=', 1)->paginate(15);
+    	$data = User::where('id','!=', 1)->paginate(10);
     	return view('users.index')->with('data', $data);
     }
 
@@ -93,7 +93,7 @@ class UserController extends Controller
         }
         //Comprobamos si existe una imagen
    		if ($request->hasFile('profilePicture')) {
-   			$data['profilePicture'] = $request->file('profilePicture')->store('public/profile');
+   			$data['profilePicture'] = $request->file('profilePicture')->store('public/profiles');
    		}
 
         if ($user->teacher) {

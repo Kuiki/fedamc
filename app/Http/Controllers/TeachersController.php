@@ -34,17 +34,17 @@ class TeachersController extends Controller
             'address' => '',
             'cp' => '',
             'city' => '',
-            'active' => 'required',
+            'active' => '',
             'rate' => '',
             'idUser' => '',
     	]);
-
+        $data['typeUser'] = 'maestro';
+        //Encriptamos la contraseña
+        $data['password'] = bcrypt('password');
         //creamos primero el usuario para luego vincular su id con el maestro
     	$user = User::create($data);
         //Guardamos su id
    		$data['idUser'] = $user->id;
-        //Encriptamos la contraseña
-        $data['password'] = bcrypt('password');
         //Comprobaos si hay imagen
     	if ($request->hasFile('profilePicture')) {
    			$data['profilePicture'] = $request->file('profilePicture')->store('public/profiles');
@@ -73,15 +73,17 @@ class TeachersController extends Controller
             'profilePicture' => 'image',
             'password' => '',
             'phone' => '',
-            'fNacimiento' => 'date',
+            'fNacimiento' => '',
             'address' => '',
             'cp' => '',
             'city' => '',
             'activity' => '',
-            'active' => 'required',
+            'active' => '',
             'rate' => '',
             'idUser' => '',
         ]);
+
+        //dd($data);
         //Si esta vacia la eliminamos de la variable $data
         if ($data['password'] != null) {
             $data['password'] = bcrypt($data['password']);
@@ -90,7 +92,7 @@ class TeachersController extends Controller
         }
         // Compribamos si hay imagen
    		if ($request->hasFile('profilePicture')) {
-   			$data['profilePicture'] = $request->file('profilePicture')->store('public/profile');
+   			$data['profilePicture'] = $request->file('profilePicture')->store('public/profiles');
    		}
         // actualizamos el maestro
         $teachers->user->update($data);

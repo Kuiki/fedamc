@@ -46,7 +46,13 @@
 	    <div class="form-group row">
 	      <label class="col-sm-3 col-form-label">Número de Licencia</label>
 	      <div class="col-sm-9">
-	        <input name="license" class="form-control" type="text" placeholder="Licencia" value="{{ $user->teacher->license ?? $user->studend->license }}" disabled>
+	        @if ($user->teacher)
+	      		<input name="license" class="form-control" type="text" placeholder="Licencia" value="{{ $user->teacher->license }}" disabled>
+	      	@elseif($user->studend)
+	      		<input name="license" class="form-control" type="text" placeholder="Licencia" value="{{ $user->studend->license }}" disabled>
+	      	@else
+	      		<input name="license" class="form-control" type="text" placeholder="Licencia" value="" disabled>
+	      	@endif
 	      </div>
 	    </div>
 	  </div>
